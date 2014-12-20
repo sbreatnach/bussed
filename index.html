@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html ng-app="bussed">
+<head>
+    <meta charset="utf-8" />
+    <title>bussed</title>
+
+    <!-- bussed references -->
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+<body>
+    <div ng-view>
+
+    </div>
+
+    <!-- External map JS -->
+    <script type="text/javascript" src="https://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
+    <!-- Cordova reference, this is added to your app when it's built. -->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/vendor/angular/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/vendor/angular-route/angular-route.min.js"></script>
+
+    <script type="text/javascript" src="scripts/common.js"></script>
+    <script type="text/javascript" src="scripts/messages.js"></script>
+    <script type="text/javascript" src="scripts/map/location.js"></script>
+    <script type="text/javascript" src="scripts/map/bing.js"></script>
+    <script type="text/javascript" src="scripts/data/common.js"></script>
+    <script type="text/javascript" src="scripts/data/buseireann.js"></script>
+    <script type="text/javascript" src="scripts/data/bus.js"></script>
+    <script type="text/javascript" src="scripts/map/map.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+</body>
+</html>

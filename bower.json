@@ -1,0 +1,26 @@
+{
+    "name": "bussed",
+    "version": "0.0.1",
+    "dependencies": {
+        "angular": "latest",
+        "angular-route": "latest"
+    },
+    "install": {
+        "path": {
+            "js": "scripts/vendor",
+            "css": "css/vendor",
+            "map": "scripts/vendor"
+        },
+        "sources": {
+            "angular": [
+                "bower_components/angular/angular.min.js",
+                "bower_components/angular/angular.min.js.map"
+            ],
+            "angular-route": [
+                "bower_components/angular-route/angular-route.min.js",
+                "bower_components/angular-route/angular-route.min.js.map"
+            ]
+        }
+    }
+}
+

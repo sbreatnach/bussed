@@ -1,0 +1,14 @@
+﻿<div ng-controller="MapController">
+    <div style="width:100%; height: 410px;">
+        <div style="position:absolute; width:345px; height:400px;" bsd-map="map" api-key="AsmDtzooNdsTJqU8Yeve01jJDwbi8k3NKSjbgdOeOC_cqudSuOldrInCb-CJcDyg"></div>
+    </div>
+    <div id="map-data"></div>
+    <a href ng-click="map.setCurrentPosition()">Set Current Position</a>
+</div>
+<div ng-controller="MessageController">
+    <ul>
+        <li ng-repeat="message in currentMessages track by $index">
+            [[ message ]] <a href ng-click="removeMessage($index)">X</a>
+        </li>
+    </ul>
+</div>
