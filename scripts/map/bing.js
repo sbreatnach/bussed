@@ -117,7 +117,7 @@
                 'viewchangeend', function (e) {
                     obj.scope.$emit('mapchanged', obj);
                 },
-                500
+                2000
             );
             this.scope.$emit('mapinit', this);
             if (this.position) {

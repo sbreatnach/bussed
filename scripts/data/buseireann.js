@@ -12,15 +12,28 @@
 
     .service('DataGenerator', ['GeoPosition', 'Stop', 'Bus', 'Route', 'Prediction',
                                function (GeoPosition, Stop, Bus, Route, Prediction) {
+
+        var convertLocationToPosition = function (latitude, longitude) {
+            return new GeoPosition(latitude / 3600000.0, longitude / 3600000.0);
+        };
+
+        this.convertPositionToLocation = function (position) {
+            return {
+                latitude: Math.round(position.latitude * 3600000.0),
+                longitude: Math.round(position.longitude * 3600000.0)
+            };
+        };
+
         this.stopFromData = function (data) {
-            return new Stop(data.id, data.name, data.latitude, data.longitude,
-                            data.shortName);
+            var position = convertLocationToPosition(data.latitude,
+                                                     data.longitude);
+            return new Stop(data.id, data.name, position, data.shortName);
         };
 
         this.busFromData = function (data) {
-            return new Bus(data.id, data.name,
-                           new GeoPosition(data.latitude, data.longitude),
-                           data.heading);
+            var position = convertLocationToPosition(data.latitude,
+                                                     data.longitude);
+            return new Bus(data.id, data.name, position, data.heading);
         };
 
         this.predictionFromData = function (data) {
@@ -33,9 +46,13 @@
         };
     }])
 
-    .service('BusEireann', ['$q', '$http', 'BUSEIREANN_URLS', 'MIME_TYPES', 'DataGenerator',
-                            function ($q, $http, BUSEIREANN_URLS, MIME_TYPES, DataGenerator) {
+    .service('BusEireann', ['$log', '$q', '$http', 'BUSEIREANN_URLS', 'MIME_TYPES', 'DataGenerator',
+                            function ($log, $q, $http, BUSEIREANN_URLS, MIME_TYPES, DataGenerator) {
         var obj = this;
+        var defaultHeaders = {
+            'Accept': '*/*',
+            'Content-Type': MIME_TYPES.urlencoded
+        };
         obj.vehicleRequest = null;
         obj.stopRequest = null;
         obj.stopsRequest = null;
@@ -43,8 +60,9 @@
         obj.routes = {};
 
         obj.onVehicleSuccess = function (data, status, headers, config) {
+            $log.debug('BusEireann::onVehicleSuccess');
             var newData = {};
-            angular.forEach(data, function (value) {
+            angular.forEach(data.vehicles, function (value) {
                 if (!angular.isDefined(value.isDeleted) || !value.isDeleted) {
                     newData[value.id] = DataGenerator.busFromData(value);
                 }
@@ -54,6 +72,7 @@
         };
 
         obj.getVehicles = function (area) {
+            $log.debug('BusEireann::getVehicles');
             if (obj.vehicleRequest === null) {
                 if (obj.lastRequestTimestamp === 0) {
                     obj.lastRequestTimestamp = Date.now();
@@ -63,10 +82,7 @@
                     BUSEIREANN_URLS.vehicles,
                     { lastUpdate: obj.lastRequestTimestamp },
                     {
-                        headers: {
-                            'Accept': '*/*',
-                            'Content-Type': MIME_TYPES.urlencoded
-                        }
+                        headers: defaultHeaders
                     }
                 )
                     .success(obj.onVehicleSuccess)
@@ -81,6 +97,7 @@
         };
 
         obj.onStopsSuccess = function (data, status, headers, config) {
+            $log.debug('BusEireann::onStopsSuccess');
             var newData = {};
             angular.forEach(data, function (value) {
                 newData[value.id] = DataGenerator.stopFromData(value);
@@ -90,18 +107,23 @@
         };
 
         obj.getStops = function (area) {
+            $log.debug('BusEireann::getStops');
             if (obj.stopsRequest === null) {
                 obj.stopsRequest = $q.defer();
+                var topLeft = DataGenerator.convertPositionToLocation(
+                    area.northWestPosition);
+                var bottomRight = DataGenerator.convertPositionToLocation(
+                    area.southEastPosition);
                 $http.post(
                     BUSEIREANN_URLS.stops,
                     {
-                        left: area.northWestPosition.longitude,
-                        bottom: area.southEastPosition.latitude,
-                        top: area.northWestPosition.latitude,
-                        right: area.southEastPosition.longitude
+                        left: topLeft.longitude,
+                        bottom: bottomRight.latitude,
+                        top: topLeft.latitude,
+                        right: bottomRight.longitude
                     },
                     {
-                        headers: { 'Content-Type': MIME_TYPES.urlencoded }
+                        headers: defaultHeaders
                     }
                 )
                     .success(obj.onStopsSuccess)
@@ -115,6 +137,7 @@
         };
 
         obj.onStopSuccess = function (data, status, headers, config) {
+            $log.debug('BusEireann::onStopSuccess');
             var newData = { routes: {}, predictions: [] };
             angular.forEach(data.actual, function (value) {
                 newData.predictions.push(
@@ -129,6 +152,7 @@
         };
 
         obj.getLatestStopData = function (stop, direction) {
+            $log.debug('BusEireann::getLatestStopData');
             if (obj.stopRequest === null) {
                 var currentTimestamp = Date.now();
                 obj.stopRequest = $q.defer();
@@ -144,7 +168,7 @@
                         cacheBuster: currentTimestamp + 60000
                     },
                     {
-                        headers: { 'Content-Type': MIME_TYPES.urlencoded }
+                        headers: defaultHeaders
                     }
                 )
                     .success(obj.onStopSuccess)

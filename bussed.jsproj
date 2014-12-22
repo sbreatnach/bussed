@@ -110,6 +110,8 @@
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="images\bus.png" />
+    <Content Include="images\ie\stop.png" />
     <Content Include="scripts\common.js" />
     <Content Include="scripts\data\bus.js" />
     <Content Include="scripts\data\buseireann.js" />
@@ -124,7 +126,6 @@
     <Content Include="scripts\vendor\angular\angular.min.js.map" />
     <Content Include="templates\main.tpl.html" />
     <Folder Include="css\vendor\" />
-    <Folder Include="images\" />
     <Content Include="api_data.md" />
     <Content Include="bower.json" />
     <Content Include="merges\android\scripts\android2.3-jscompat.js" />

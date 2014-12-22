@@ -26,7 +26,7 @@
                                 mapObject.icon = '/images/ie/stop.png';
                             }
                             else {
-                                mapObject.icon = '/images/ie/bus.png';
+                                mapObject.icon = '/images/bus.png';
                             }
                             map.addObject(modelKey, mapObject);
                         });

@@ -8,15 +8,18 @@
     };
 
     angular.module('bussed', ['ngRoute', 'bussed.main'])
-    .config(function ($routeProvider, $interpolateProvider) {
+    .config(function ($compileProvider, $logProvider, $routeProvider, $interpolateProvider) {
         $interpolateProvider.startSymbol('[[').endSymbol(']]');
         $routeProvider.otherwise({ redirectTo: '/' });
+        // TODO: disable debug logging and symbols for production
+        $logProvider.debugEnabled(true);
+        $compileProvider.debugInfoEnabled(true);
     })
-    .run(function ($rootScope) {
+    .run(function ($log, $rootScope) {
         // on init of Angular, store the platform reference and listen for
         // changes initiated by backend, converting those changes into
         // Angular events
-        console.log('Running platform hooks');
+        $log.debug('Running platform hooks');
         $rootScope.platformData = platformData;
         $rootScope.$watch('platformData.ready', function (newData, oldData) {
             $rootScope.$broadcast('onReady');
