@@ -18,8 +18,8 @@
                 var modelKeys = ['stops', 'vehicles'];
                 angular.forEach(modelKeys, function (modelKey) {
                     scope.$watch(modelKey, function (newValues) {
+                        map.clearObjects(modelKey);
                         angular.forEach(newValues, function (value) {
-                            map.clearObjects(modelKey);
                             var mapObject = new MapObject(
                                 value.id, value.position, value.name);
                             if (modelKey === 'stops') {
