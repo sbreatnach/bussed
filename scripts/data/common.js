@@ -35,10 +35,9 @@
     })
 
     .factory('Prediction', function () {
-        function Prediction(expectedTime, busId, routeId) {
-            this.expectedTime = expectedTime;
-            this.busId = busId;
-            this.routeId = routeId;
+        function Prediction(dueTime, bus) {
+            this.dueTime = dueTime;
+            this.bus = bus;
         }
 
         return Prediction;

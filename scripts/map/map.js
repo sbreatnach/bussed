@@ -44,8 +44,9 @@
 
         var updateWithMap = function (event, map) {
             if ($scope.realtimeInfo) {
-                $scope.realtimeInfo.updateStops(map.getVisibleArea());
-                $scope.realtimeInfo.updateVehicles(map.getVisibleArea());
+                var area = map.getVisibleArea();
+                $scope.realtimeInfo.updateStops(area);
+                $scope.realtimeInfo.updateVehicles(area);
             }
         };
 

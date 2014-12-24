@@ -35,7 +35,7 @@
             var obj = this;
             this.cancelVehicleUpdate();
             this.vehicleInterval = $interval(function () {
-                BusEireann.getVehicles().then(
+                BusEireann.getVehicles(area).then(
                     function (data) {
                         obj.scope.vehicles = data;
                     },

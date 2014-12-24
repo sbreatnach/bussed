@@ -5,40 +5,33 @@
                                               'bussed.data.common'])
 
     .constant('BUSEIREANN_URLS', {
-        vehicles: 'http://whensmybus.buseireann.ie/internetservice/geoserviceDispatcher/services/vehicleinfo/vehicles',
-        stops: 'http://whensmybus.buseireann.ie/internetservice/geoserviceDispatcher/services/stopinfo/stops',
-        stop: 'http://whensmybus.buseireann.ie/internetservice/services/passageinfo/stopPassages/stop'
+        vehicles: 'http://localhost:50027/v1/buses',
+        stops: 'http://localhost:50027/v1/stops',
+        stop: 'http://localhost:50027/v1/bus/{0}/'
     })
 
     .service('DataGenerator', ['GeoPosition', 'Stop', 'Bus', 'Route', 'Prediction',
                                function (GeoPosition, Stop, Bus, Route, Prediction) {
 
-        var convertLocationToPosition = function (latitude, longitude) {
-            return new GeoPosition(latitude / 3600000.0, longitude / 3600000.0);
-        };
-
-        this.convertPositionToLocation = function (position) {
-            return {
-                latitude: Math.round(position.latitude * 3600000.0),
-                longitude: Math.round(position.longitude * 3600000.0)
-            };
-        };
-
         this.stopFromData = function (data) {
-            var position = convertLocationToPosition(data.latitude,
-                                                     data.longitude);
-            return new Stop(data.id, data.name, position, data.shortName);
+            var position = new GeoPosition(data.position.latitude,
+                                           data.position.longitude);
+            return new Stop(data.id, data.name, position, data.publicId);
         };
 
         this.busFromData = function (data) {
-            var position = convertLocationToPosition(data.latitude,
-                                                     data.longitude);
-            return new Bus(data.id, data.name, position, data.heading);
+            var position = new GeoPosition(data.position.latitude,
+                                           data.position.longitude);
+            var bus = new Bus(data.id, data.name, position, data.direction);
+            if (data.route) {
+                bus.route = this.routeFromData(data.route);
+            }
+            return bus;
         };
 
         this.predictionFromData = function (data) {
-            return new Prediction(data.actualTime, data.vehicleId,
-                                  data.routeId);
+            var bus = this.busFromData(data.bus);
+            return new Prediction(data.dueTime, bus);
         };
 
         this.routeFromData = function (data) {
@@ -46,13 +39,9 @@
         };
     }])
 
-    .service('BusEireann', ['$log', '$q', '$http', 'BUSEIREANN_URLS', 'MIME_TYPES', 'DataGenerator',
-                            function ($log, $q, $http, BUSEIREANN_URLS, MIME_TYPES, DataGenerator) {
+    .service('BusEireann', ['$log', '$q', '$http', 'HttpLib', 'BUSEIREANN_URLS', 'MIME_TYPES', 'DataGenerator',
+                            function ($log, $q, $http, HttpLib, BUSEIREANN_URLS, MIME_TYPES, DataGenerator) {
         var obj = this;
-        var defaultHeaders = {
-            'Accept': '*/*',
-            'Content-Type': MIME_TYPES.urlencoded
-        };
         obj.vehicleRequest = null;
         obj.stopRequest = null;
         obj.stopsRequest = null;
@@ -62,10 +51,9 @@
         obj.onVehicleSuccess = function (data, status, headers, config) {
             $log.debug('BusEireann::onVehicleSuccess');
             var newData = {};
-            angular.forEach(data.vehicles, function (value) {
-                if (!angular.isDefined(value.isDeleted) || !value.isDeleted) {
-                    newData[value.id] = DataGenerator.busFromData(value);
-                }
+            angular.forEach(data, function (value) {
+                var newBus = DataGenerator.busFromData(value);
+                newData[newBus.id] = newBus;
             });
             obj.vehicleRequest.resolve(newData);
             obj.vehicleRequest = null;
@@ -74,21 +62,20 @@
         obj.getVehicles = function (area) {
             $log.debug('BusEireann::getVehicles');
             if (obj.vehicleRequest === null) {
-                if (obj.lastRequestTimestamp === 0) {
-                    obj.lastRequestTimestamp = Date.now();
-                }
                 obj.vehicleRequest = $q.defer();
-                $http.post(
-                    BUSEIREANN_URLS.vehicles,
-                    { lastUpdate: obj.lastRequestTimestamp },
-                    {
-                        headers: defaultHeaders
-                    }
+                var qs = HttpLib.queryStringFromParameters({
+                    left: area.northWestPosition.longitude,
+                    bottom: area.southEastPosition.latitude,
+                    top: area.northWestPosition.latitude,
+                    right: area.southEastPosition.longitude
+                });
+                $http.get(
+                    BUSEIREANN_URLS.vehicles + '?' + qs
                 )
                     .success(obj.onVehicleSuccess)
                     .error(function (data, status, headers, config) {
                         obj.vehicleRequest.reject(
-                            'Failed to retrieve latest bus data from Bus Eireann');
+                            'Failed to retrieve latest bus data');
                         obj.vehicleRequest = null;
                     });
                 obj.lastRequestTimestamp = Date.now();
@@ -100,7 +87,8 @@
             $log.debug('BusEireann::onStopsSuccess');
             var newData = {};
             angular.forEach(data, function (value) {
-                newData[value.id] = DataGenerator.stopFromData(value);
+                var newStop = DataGenerator.stopFromData(value);
+                newData[newStop.id] = newStop;
             });
             obj.stopsRequest.resolve(newData);
             obj.stopsRequest = null;
@@ -110,26 +98,19 @@
             $log.debug('BusEireann::getStops');
             if (obj.stopsRequest === null) {
                 obj.stopsRequest = $q.defer();
-                var topLeft = DataGenerator.convertPositionToLocation(
-                    area.northWestPosition);
-                var bottomRight = DataGenerator.convertPositionToLocation(
-                    area.southEastPosition);
-                $http.post(
-                    BUSEIREANN_URLS.stops,
-                    {
-                        left: topLeft.longitude,
-                        bottom: bottomRight.latitude,
-                        top: topLeft.latitude,
-                        right: bottomRight.longitude
-                    },
-                    {
-                        headers: defaultHeaders
-                    }
+                var qs = HttpLib.queryStringFromParameters({
+                    left: area.northWestPosition.longitude,
+                    bottom: area.southEastPosition.latitude,
+                    top: area.northWestPosition.latitude,
+                    right: area.southEastPosition.longitude
+                });
+                $http.get(
+                    BUSEIREANN_URLS.stops + '?' + qs
                 )
                     .success(obj.onStopsSuccess)
                     .error(function (data, status, headers, config) {
                         obj.stopsRequest.reject(
-                            'Failed to retrieve bus stop data from Bus Eireann');
+                            'Failed to retrieve bus stop data');
                         obj.stopsRequest = null;
                     });
             }
@@ -138,14 +119,10 @@
 
         obj.onStopSuccess = function (data, status, headers, config) {
             $log.debug('BusEireann::onStopSuccess');
-            var newData = { routes: {}, predictions: [] };
-            angular.forEach(data.actual, function (value) {
-                newData.predictions.push(
-                    DataGenerator.predictionFromData(value)
-                );
-            });
-            angular.forEach(data.routes, function (value) {
-                newData.routes[value.id] = DataGenerator.routeFromData(value);
+            var newData = [];
+            angular.forEach(data, function (value) {
+                var newPrediction = DataGenerator.predictionFromData(value);
+                newData.push(newPrediction);
             });
             obj.stopRequest.resolve(newData);
             obj.stopRequest = null;
@@ -156,25 +133,13 @@
             if (obj.stopRequest === null) {
                 var currentTimestamp = Date.now();
                 obj.stopRequest = $q.defer();
-                $http.post(
-                    BUSEIREANN_URLS.stop,
-                    {
-                        stop: stop.publicId,
-                        mode: direction || 'departure',
-                        startTime: currentTimestamp,
-                        // unsure what this does but it's always in the future
-                        // on site so do the same. possible time in future to
-                        // limit the responses?
-                        cacheBuster: currentTimestamp + 60000
-                    },
-                    {
-                        headers: defaultHeaders
-                    }
+                $http.get(
+                    BUSEIREANN_URLS.stop.format(stop.id)
                 )
                     .success(obj.onStopSuccess)
                     .error(function (data, status, headers, config) {
                         obj.stopRequest.reject(
-                            'Failed to retrieve bus stop data from Bus Eireann');
+                            'Failed to retrieve bus stop data');
                         obj.stopRequest = null;
                     });
             }
