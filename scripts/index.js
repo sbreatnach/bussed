@@ -1,7 +1,5 @@
 ﻿(function () {
     'use strict';
-    // global platform data to act as bridge between Angular and platform
-    // backend.
     var platformData = {
         ready: false,
         paused: false
@@ -21,31 +19,33 @@
         // Angular events
         $log.debug('Running platform hooks');
         $rootScope.platformData = platformData;
-        $rootScope.$watch('platformData.ready', function (newData, oldData) {
-            $rootScope.$broadcast('onReady');
-        });
-        $rootScope.$watch('platformData.paused', function (newData, oldData) {
-            if (newData) {
+        document.addEventListener('deviceready', function () {
+            console.log('Device ready');
+            $rootScope.$apply(function () {
+                $rootScope.platformData.ready = true;
+                $rootScope.$broadcast('onReady');
+            });
+        }, false);
+        document.addEventListener('pause', function () {
+            console.log('Device paused');
+            $rootScope.$apply(function () {
+                $rootScope.platformData.paused = true;
                 $rootScope.$broadcast('onPause');
-            }
-            else {
+            });
+        }, false);
+        document.addEventListener('resume', function () {
+            console.log('Device resumed');
+            $rootScope.$apply(function () {
+                $rootScope.platformData.paused = false;
                 $rootScope.$broadcast('onResume');
-            }
-        });
+            });
+        }, false);
     });
 
+    // listening on device ready twice to catch edge case if deviceready is
+    // invoked before angular bootstrapped
     document.addEventListener('deviceready', function () {
-        console.log('Device ready');
+        console.log('Base device ready');
         platformData.ready = true;
-    }, false);
-
-    document.addEventListener('pause', function () {
-        console.log('Device paused');
-        platformData.paused = true;
-    }, false);
-
-    document.addEventListener('resume', function () {
-        console.log('Device resuming');
-        platformData.paused = false;
     }, false);
 })();

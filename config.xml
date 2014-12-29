@@ -4,7 +4,7 @@
   <description>Real-time bus information and tracking</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">Shane Breatnach</author>
   <content src="index.html" />
-  <access origin="http://whensmybus.buseireann.ie" />
+  <access origin="*" />
   <preference name="SplashScreen" value="screen" />
   <preference name="windows-target-version" value="8.0" />
   <preference name="windows-phone-target-version" value="8.1" />
