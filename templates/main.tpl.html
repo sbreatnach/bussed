@@ -1,9 +1,8 @@
-﻿<div ng-controller="MapController">
-    <div style="width:100%; height: 410px;">
-        <div style="position:absolute; width:345px; height:400px;" bsd-map="map" api-key="AsmDtzooNdsTJqU8Yeve01jJDwbi8k3NKSjbgdOeOC_cqudSuOldrInCb-CJcDyg"></div>
+﻿<div id="map-container" ng-controller="MapController">
+    <div id="map" bsd-map="map" api-key="AsmDtzooNdsTJqU8Yeve01jJDwbi8k3NKSjbgdOeOC_cqudSuOldrInCb-CJcDyg"></div>
+    <div id="map-data">
+        <a href ng-click="setCurrentPosition()">Set Current Position</a>
     </div>
-    <div id="map-data"></div>
-    <a href ng-click="setCurrentPosition()">Set Current Position</a>
 </div>
 <div ng-controller="MessageController">
     <ul>

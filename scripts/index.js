@@ -8,7 +8,9 @@
     angular.module('bussed', ['ngRoute', 'bussed.main'])
     .config(function ($compileProvider, $logProvider, $routeProvider, $interpolateProvider) {
         // add support for WP8 URLs in Cordova. See https://github.com/angular/angular.js/issues/2303
-        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0|ms-appdata):/);
+        $compileProvider.aHrefSanitizationWhitelist(
+            /^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0|ms-appdata):/
+        );
         $interpolateProvider.startSymbol('[[').endSymbol(']]');
         $routeProvider.otherwise({ redirectTo: '/' });
         // TODO: disable debug logging and symbols for production

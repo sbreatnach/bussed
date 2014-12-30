@@ -12,6 +12,10 @@
                 scope.$watch(mapScopeKey, function (newMap, oldMap) {
                     $log.debug('Map directive changed: {0}'.format(newMap));
                     if (newMap !== null) {
+                        // force the element to the correct height
+                        // TODO: screen.height isn't correct for all devices
+                        // see http://www.quirksmode.org/blog/archives/2012/07/more_about_devi.html
+                        elem.height(screen.height);
                         newMap.initialize(elem, mapApiKey);
                     }
                 });
