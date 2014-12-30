@@ -61,7 +61,7 @@
             if (map.getZoomLevel() >= 0.7) {
                 var area = map.getVisibleArea();
                 $scope.realtimeInfo.updateStops(area);
-                $scope.realtimeInfo.updateVehicles(area);
+                $scope.realtimeInfo.updateVehiclesRegularly(area);
             }
             else {
                 map.clearObjects();

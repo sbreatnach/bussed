@@ -31,16 +31,22 @@
             }
         };
 
-        RealtimeBusInfo.prototype.updateVehicles = function (area, frequency) {
+        RealtimeBusInfo.prototype.updateVehicles = function (area) {
+            var obj = this;
+            BusEireann.getVehicles(area).then(
+                function (data) {
+                    obj.scope.vehicles = data;
+                },
+                errorCallback
+            );
+        };
+
+        RealtimeBusInfo.prototype.updateVehiclesRegularly = function (area, frequency) {
             var obj = this;
             this.cancelVehicleUpdate();
+            this.updateVehicles(area);
             this.vehicleInterval = $interval(function () {
-                BusEireann.getVehicles(area).then(
-                    function (data) {
-                        obj.scope.vehicles = data;
-                    },
-                    errorCallback
-                );
+                obj.updateVehicles.apply(obj, [area]);
             }, frequency || 20000);
             this.scope.$on('$destroy', function () {
                 this.cancelVehicleUpdate();
