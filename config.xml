@@ -10,6 +10,8 @@
   <preference name="windows-phone-target-version" value="8.1" />
   <preference name="KeepRunning" value="False" />
   <vs:plugin name="org.apache.cordova.geolocation" version="0.3.10" />
+  <vs:plugin name="org.apache.cordova.file" version="1.3.1" />
+  <vs:plugin name="org.apache.cordova.console" version="0.2.11" />
   <vs:platformSpecificValues>
     <vs:platformSpecificWidget platformName="windows">
       <vs:name>Bussed</vs:name>

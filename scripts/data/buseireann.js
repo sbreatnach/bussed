@@ -5,9 +5,9 @@
                                               'bussed.data.common'])
 
     .constant('BUSEIREANN_URLS', {
-        vehicles: 'http://localhost:50027/v1/buses',
-        stops: 'http://localhost:50027/v1/stops',
-        stop: 'http://localhost:50027/v1/bus/{0}/'
+        vehicles: 'http://bussed.apphb.com/v1/buses',
+        stops: 'http://bussed.apphb.com/v1/stops',
+        stop: 'http://bussed.apphb.com/v1/bus/{0}/'
     })
 
     .service('DataGenerator', ['GeoPosition', 'Stop', 'Bus', 'Route', 'Prediction',

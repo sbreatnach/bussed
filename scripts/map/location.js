@@ -42,23 +42,27 @@
         obj.deferred = null;
 
         obj.onLocationSuccess = function (position) {
-            var currentPosition = new GeoPosition(position.coords.latitude,
-                                                  position.coords.longitude);
-            obj.deferred.resolve(currentPosition);
-            obj.deferred = null;
+            if (obj.deferred !== null) {
+                var currentPosition = new GeoPosition(position.coords.latitude,
+                                                      position.coords.longitude);
+                obj.deferred.resolve(currentPosition);
+                obj.deferred = null;
+            }
         };
 
         obj.onLocationError = function (error) {
-            obj.deferred.reject(error);
-            obj.deferred = null;
+            if (obj.deferred !== null) {
+                obj.deferred.reject(error);
+                obj.deferred = null;
+            }
         };
 
         obj.getCurrentPosition = function () {
             if (obj.deferred === null) {
                 obj.deferred = $q.defer();
-                navigator.geolocation.getCurrentPosition(obj.onLocationSuccess,
-                                                         obj.onLocationError);
             }
+            navigator.geolocation.getCurrentPosition(obj.onLocationSuccess,
+                                                     obj.onLocationError);
             return obj.deferred.promise;
         };
     }]);

@@ -1,10 +1,10 @@
 ﻿(function () {
     'use strict';
-    angular.module('bussed.map.bing', ['bussed.map.location', 'bussed.messages'])
-    .factory('BingMap', ['$q', 'GeoDefaults', 'GeoPosition', 'GeoArea', 'LocationService', 'Messages',
-                         function ($q, GeoDefaults, GeoPosition, GeoArea, LocationService, Messages) {
+    angular.module('bussed.map.bing', ['bussed.map.location'])
+    .factory('BingMap', ['$q', 'GeoDefaults', 'GeoPosition', 'GeoArea',
+                         function ($q, GeoDefaults, GeoPosition, GeoArea) {
 
-        var MAX_ZOOM_LEVEL = 12;
+        var MAX_ZOOM_LEVEL = 19;
 
         function BingMap(scope, position, zoomLevel) {
             this.scope = scope;
@@ -47,13 +47,23 @@
         };
 
         BingMap.prototype.clearObjects = function (collectionKey) {
-            if (this.mapObjects[collectionKey] === undefined) {
-                return;
+            var obj = this;
+            var keys = null;
+            if (collectionKey) {
+                keys = [collectionKey];
             }
-            if (this.map) {
-                this.map.entities.remove(this.mapObjects[collectionKey]);
+            else {
+                keys = Object.keys(obj.mapObjects);
             }
-            delete this.mapObjects[collectionKey];
+            angular.forEach(keys, function (key) {
+                if (obj.mapObjects[key] === undefined) {
+                    return;
+                }
+                if (obj.map) {
+                    obj.map.entities.remove(obj.mapObjects[key]);
+                }
+                delete obj.mapObjects[key];
+            });
         };
 
         BingMap.prototype.addObject = function (collectionKey, object) {
@@ -72,18 +82,6 @@
                 text: object.name
             });
             this.mapObjects[collectionKey].push(pin);
-        };
-
-        BingMap.prototype.setCurrentPosition = function () {
-            var map = this;
-            LocationService.getCurrentPosition().then(
-                function (position) {
-                    map.setPosition(position);
-                },
-                function (errorMessage) {
-                    Messages.addMessage(errorMessage);
-                }
-            );
         };
 
         BingMap.prototype.setPosition = function (position) {
@@ -115,6 +113,7 @@
             this.listenerId = Microsoft.Maps.Events.addThrottledHandler(
                 this.map,
                 'viewchangeend', function (e) {
+                    obj.zoomLevel = obj.map.getTargetZoom();
                     obj.scope.$emit('mapchanged', obj);
                 },
                 2000

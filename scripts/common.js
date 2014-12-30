@@ -21,6 +21,28 @@
             });
             return urlParameters.join('&');
         };
+    })
+
+    .service('FileLib', function () {
+        this.getLocalFilePath = function () {
+            var parts;
+            if (angular.isDefined(cordova.file)) {
+                // IOS/Android have the path correctly defined
+                parts = [cordova.file.applicationDirectory + 'www'];
+            }
+            else if (cordova.platformId === 'windowsphone') {
+                // WP8 doesn't so must explicitly specify location
+                parts = ['x-wmapp0:www'];
+            }
+            else {
+                // running via an emulator or browser
+                parts = [''];
+            }
+            for (var i = 0; i < arguments.length; i += 1) {
+                parts.push(arguments[i]);
+            }
+            return parts.join('/');
+        };
     });
 
 
