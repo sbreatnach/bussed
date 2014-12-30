@@ -74,6 +74,7 @@
                  function ($log, $scope, BingMap, Messages, RealtimeBusInfo, LocationService) {
         $scope.realtimeInfo = new RealtimeBusInfo($scope);
         $scope.map = null;
+        $scope.selectedObject = null;
 
         var updateWithMap = function (event, map) {
             if (map.getZoomLevel() >= 0.7) {
@@ -97,6 +98,10 @@
                     Messages.addMessage(errorMessage);
                 }
             );
+        };
+
+        $scope.setSelectedObject = function (objectKey, object) {
+            $scope.selectedObject = $scope[objectKey][object.id];
         };
 
         $scope.$on('mapinit', updateWithMap);
