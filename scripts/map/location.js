@@ -3,6 +3,14 @@
 
     angular.module('bussed.map.location', [])
 
+    .factory('Point', function () {
+        function Point(x, y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        return Point;
+    })
     .factory('GeoPosition', function () {
         function GeoPosition(latitude, longitude) {
             this.latitude = latitude;
@@ -20,11 +28,14 @@
         return GeoArea;
     })
     .factory('MapObject', function () {
-        function MapObject(id, position, name, icon, description) {
+        function MapObject(id, position, name, icon, description, width, height, anchor) {
             this.id = id;
             this.position = position;
             this.name = name;
             this.icon = icon;
+            this.width = width;
+            this.height = height;
+            this.anchor = anchor;
             this.description = description;
         }
 

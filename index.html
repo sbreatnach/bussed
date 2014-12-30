@@ -2,6 +2,8 @@
 <html ng-app="bussed">
 <head>
     <meta charset="utf-8" />
+    <!-- Ensures correct width/height is set on mobile device -->
+    <meta name="viewport" content="width=device-width">
     <title>bussed</title>
 
     <!-- bussed references -->
@@ -12,15 +14,17 @@
 
     </div>
 
-    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
     <!-- External map JS -->
     <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0&s=1"></script>
-    <!-- Cordova reference, this is added to your app when it's built. -->
+    <!-- Cordova library and platform-specific overrides -->
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <!-- 3rd party frameworks + libs -->
+    <script type="text/javascript" src="scripts/vendor/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/vendor/angular/angular.min.js"></script>
     <script type="text/javascript" src="scripts/vendor/angular-route/angular-route.min.js"></script>
 
+    <!-- Project code -->
     <script type="text/javascript" src="scripts/common.js"></script>
     <script type="text/javascript" src="scripts/messages.js"></script>
     <script type="text/javascript" src="scripts/map/location.js"></script>
@@ -30,6 +34,8 @@
     <script type="text/javascript" src="scripts/data/bus.js"></script>
     <script type="text/javascript" src="scripts/map/map.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
+
+    <!-- Bridge code for integrating Cordova with framework and project -->
     <script type="text/javascript" src="scripts/index.js"></script>
 </body>
 </html>

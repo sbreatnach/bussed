@@ -6,6 +6,7 @@
     };
 
     angular.module('bussed', ['ngRoute', 'bussed.main'])
+
     .config(function ($compileProvider, $logProvider, $routeProvider, $interpolateProvider) {
         // add support for WP8 URLs in Cordova. See https://github.com/angular/angular.js/issues/2303
         $compileProvider.aHrefSanitizationWhitelist(
@@ -17,6 +18,7 @@
         $logProvider.debugEnabled(true);
         $compileProvider.debugInfoEnabled(true);
     })
+
     .run(function ($log, $rootScope) {
         // on init of Angular, store the platform reference and listen for
         // changes initiated by backend, converting those changes into

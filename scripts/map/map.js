@@ -4,7 +4,8 @@
                                   'bussed.messages', 'bussed.data.bus',
                                   'bussed.data.common'])
 
-    .directive('bsdMap', ['$log', 'FileLib', 'MapObject', function ($log, FileLib, MapObject) {
+    .directive('bsdMap', ['$log', 'Point', 'FileLib', 'MapObject',
+                          function ($log, Point, FileLib, MapObject) {
         return {
             link: function (scope, elem, attrs) {
                 var mapScopeKey = attrs.bsdMap;
@@ -15,7 +16,19 @@
                         // force the element to the correct height
                         // TODO: screen.height isn't correct for all devices
                         // see http://www.quirksmode.org/blog/archives/2012/07/more_about_devi.html
-                        elem.height(screen.height);
+                        $log.debug('Screen width/height: {0} / {1}'.format(
+                            screen.width, screen.height));
+                        $log.debug('documentElement.offset: {0} / {1}'.format(
+                            document.documentElement.offsetWidth,
+                            document.documentElement.offsetHeight));
+                        $log.debug('documentElement.client: {0} / {1}'.format(
+                            document.documentElement.clientWidth,
+                            document.documentElement.clientHeight));
+                        $log.debug('window.inner: {0} / {1}'.format(
+                            window.innerWidth, window.innerHeight));
+                        $log.debug('window.devicePixelRatio: {0}'.format(
+                            window.devicePixelRatio || 'unsupported'));
+                        elem.height(window.innerHeight);
                         newMap.initialize(elem, mapApiKey);
                     }
                 });
@@ -24,8 +37,7 @@
                 angular.forEach(modelKeys, function (modelKey) {
                     scope.$watch(modelKey, function (newValues) {
                         var map = scope[mapScopeKey];
-                        if (!angular.isDefined(newValues) ||
-                            !angular.isDefined(map))
+                        if (newValues === null || map === null)
                         {
                             return;
                         }
@@ -36,9 +48,15 @@
                             var path;
                             if (modelKey === 'stops') {
                                 path = ['ie', 'stop.png'];
+                                mapObject.width = 33;
+                                mapObject.height = 40;
                             }
                             else {
                                 path = ['bus.png'];
+                                mapObject.width = 16;
+                                mapObject.height = 16;
+                                mapObject.anchor = new Point(mapObject.width / 2,
+                                                             mapObject.height / 2);
                             }
                             path.splice(0, 0, 'images');
                             mapObject.icon = FileLib.getLocalFilePath.apply(

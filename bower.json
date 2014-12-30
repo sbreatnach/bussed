@@ -2,6 +2,7 @@
     "name": "bussed",
     "version": "0.0.1",
     "dependencies": {
+        "jquery": "latest",
         "angular": "latest",
         "angular-route": "latest"
     },
@@ -19,6 +20,10 @@
             "angular-route": [
                 "bower_components/angular-route/angular-route.min.js",
                 "bower_components/angular-route/angular-route.min.js.map"
+            ],
+            "jquery": [
+                "bower_components/jquery/dist/jquery.min.js",
+                "bower_components/jquery/dist/jquery.min.js.map"
             ]
         }
     }

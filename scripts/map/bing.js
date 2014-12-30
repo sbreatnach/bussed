@@ -74,13 +74,21 @@
                     this.map.entities.push(this.mapObjects[collectionKey]);
                 }
             }
-            var pin = new Microsoft.Maps.Pushpin(
-                createLocationFromPosition(object.position));
-            pin.setOptions({
+            var pinOptions = {
                 draggable: false,
-                icon: object.icon,
-                text: object.name
-            });
+                width: object.width,
+                height: object.height,
+                icon: object.icon
+            };
+            if (object.name) {
+                pinOptions.text = object.name;
+            }
+            if (object.anchor) {
+                pinOptions.anchor = new Microsoft.Maps.Point(object.x,
+                                                             object.y);
+            }
+            var pin = new Microsoft.Maps.Pushpin(
+                createLocationFromPosition(object.position), pinOptions);
             this.mapObjects[collectionKey].push(pin);
         };
 
