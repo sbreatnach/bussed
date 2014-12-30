@@ -256,6 +256,8 @@
     <Content Include="scripts\vendor\angular-route\angular-route.min.js.map" />
     <Content Include="scripts\vendor\angular\angular.min.js" />
     <Content Include="scripts\vendor\angular\angular.min.js.map" />
+    <Content Include="scripts\vendor\jquery\jquery.min.js" />
+    <Content Include="scripts\vendor\jquery\jquery.min.map" />
     <Content Include="templates\main.tpl.html" />
     <Folder Include="css\vendor\" />
     <Content Include="api_data.md" />

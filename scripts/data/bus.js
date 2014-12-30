@@ -43,13 +43,13 @@
 
         RealtimeBusInfo.prototype.updateVehiclesRegularly = function (area, frequency) {
             var obj = this;
-            this.cancelVehicleUpdate();
-            this.updateVehicles(area);
-            this.vehicleInterval = $interval(function () {
+            obj.cancelVehicleUpdate();
+            obj.updateVehicles(area);
+            obj.vehicleInterval = $interval(function () {
                 obj.updateVehicles.apply(obj, [area]);
             }, frequency || 20000);
-            this.scope.$on('$destroy', function () {
-                this.cancelVehicleUpdate();
+            obj.scope.$on('$destroy', function () {
+                obj.cancelVehicleUpdate();
             });
         };
 

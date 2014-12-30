@@ -84,8 +84,8 @@
                 pinOptions.text = object.name;
             }
             if (object.anchor) {
-                pinOptions.anchor = new Microsoft.Maps.Point(object.x,
-                                                             object.y);
+                pinOptions.anchor = new Microsoft.Maps.Point(object.anchor.x,
+                                                             object.anchor.y);
             }
             var pin = new Microsoft.Maps.Pushpin(
                 createLocationFromPosition(object.position), pinOptions);
