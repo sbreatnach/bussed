@@ -7,7 +7,10 @@
     .constant('BUSEIREANN_URLS', {
         vehicles: 'http://bussed.apphb.com/v1/buses',
         stops: 'http://bussed.apphb.com/v1/stops',
-        stop: 'http://bussed.apphb.com/v1/bus/{0}/'
+        stop: 'http://bussed.apphb.com/v1/stops/{0}/'
+        //vehicles: 'http://localhost:50027/v1/buses',
+        //stops: 'http://localhost:50027/v1/stops',
+        //stop: 'http://localhost:50027/v1/stops/{0}/'
     })
 
     .service('DataGenerator', ['GeoPosition', 'Stop', 'Bus', 'Route', 'Prediction',
@@ -30,7 +33,7 @@
         };
 
         this.predictionFromData = function (data) {
-            var bus = this.busFromData(data.bus);
+            var bus = (data.bus != null) ? this.busFromData(data.bus) : null;
             return new Prediction(data.dueTime, bus);
         };
 

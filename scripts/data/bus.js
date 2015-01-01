@@ -8,6 +8,7 @@
         function RealtimeBusInfo(scope) {
             this.scope = scope;
             this.vehicleInterval = null;
+            this.stopInterval = null;
         }
 
         var errorCallback = function (error) {
@@ -47,20 +48,39 @@
             obj.updateVehicles(area);
             obj.vehicleInterval = $interval(function () {
                 obj.updateVehicles.apply(obj, [area]);
-            }, frequency || 20000);
+            }, frequency || 60000);
             obj.scope.$on('$destroy', function () {
                 obj.cancelVehicleUpdate();
             });
         };
 
-        RealtimeBusInfo.prototype.updateCurrentStopData = function (stop) {
+        RealtimeBusInfo.prototype.cancelStopUpdate = function () {
+            if (this.stopInterval) {
+                $interval.cancel(this.stopInterval);
+                this.stopInterval = null;
+            }
+        };
+
+        RealtimeBusInfo.prototype.updateStop = function (stop) {
             var obj = this;
-            BusEireann.getCurrentStopData(stop).then(
+            BusEireann.getLatestStopData(stop).then(
                 function (data) {
-                    obj.scope.currentStop = data;
+                    obj.scope.stopPredictions = data;
                 },
                 errorCallback
             );
+        };
+
+        RealtimeBusInfo.prototype.updateStopRegularly = function (stop, frequency) {
+            var obj = this;
+            obj.cancelStopUpdate();
+            obj.updateStop(stop);
+            obj.stopInterval = $interval(function () {
+                obj.updateStop.apply(obj, [stop]);
+            }, frequency || 30000);
+            obj.scope.$on('$destroy', function () {
+                obj.cancelStopUpdate();
+            });
         };
 
         return RealtimeBusInfo;

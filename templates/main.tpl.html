@@ -5,6 +5,18 @@
         <div ng-hide="selectedObject === null">
             [[ selectedObject.name ]]
         </div>
+        <div id="predictions" class="scrollable" ng-hide="stopPredictions === null">
+            <table>
+                <tr>
+                    <th>Bus</th>
+                    <th>Due Time</th>
+                </tr>
+                <tr ng-repeat="prediction in stopPredictions track by $index">
+                    <td>[[ prediction.bus.name ]]</td>
+                    <td>[[ prediction.dueTime ]]</td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
 <div ng-controller="MessageController">

@@ -23,3 +23,12 @@
     left: 0px;
     z-index: 10;
 }
+
+#map-data #predictions {
+    max-width: 250px;
+    max-height: 150px;
+}
+
+.scrollable {
+    overflow:auto;
+}

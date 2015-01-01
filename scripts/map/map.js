@@ -75,6 +75,7 @@
         $scope.realtimeInfo = new RealtimeBusInfo($scope);
         $scope.map = null;
         $scope.selectedObject = null;
+        $scope.stopPredictions = null;
 
         var updateWithMap = function (event, map) {
             if (map.getZoomLevel() >= 0.7) {
@@ -84,6 +85,10 @@
             }
             else {
                 map.clearObjects();
+                $scope.realtimeInfo.cancelVehicleUpdate();
+                $scope.realtimeInfo.cancelStopUpdate();
+                $scope.selectedObject = null;
+                $scope.stopPredictions = null;
             }
         };
 
@@ -102,6 +107,13 @@
 
         $scope.setSelectedObject = function (objectKey, object) {
             $scope.selectedObject = $scope[objectKey][object.id];
+            $scope.stopPredictions = null;
+            if (objectKey === 'stops') {
+                $scope.realtimeInfo.updateStopRegularly($scope.selectedObject);
+            }
+            else {
+                $scope.realtimeInfo.cancelStopUpdate();
+            }
         };
 
         $scope.$on('mapinit', updateWithMap);
