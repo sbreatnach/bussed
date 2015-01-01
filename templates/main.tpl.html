@@ -1,11 +1,11 @@
 ﻿<div id="map-container" ng-controller="MapController">
     <div id="map" bsd-map="map" api-key="AsmDtzooNdsTJqU8Yeve01jJDwbi8k3NKSjbgdOeOC_cqudSuOldrInCb-CJcDyg"></div>
     <div id="map-data">
-        <a href ng-click="setCurrentPosition()">Set Current Position</a>
-        <div ng-hide="selectedObject === null">
+        <input type="button" ng-click="setCurrentPosition()" value="Set Current Position"/>
+        <div class="overlay" ng-hide="selectedObject === null">
             [[ selectedObject.name ]]
         </div>
-        <div id="predictions" class="scrollable" ng-hide="stopPredictions === null">
+        <div id="predictions" class="overlay scrollable" ng-hide="stopPredictions === null">
             <table>
                 <tr>
                     <th>Bus</th>
@@ -18,11 +18,24 @@
             </table>
         </div>
     </div>
-</div>
-<div ng-controller="MessageController">
-    <ul>
-        <li ng-repeat="message in currentMessages track by $index">
-            [[ message ]] <a href ng-click="removeMessage($index)">X</a>
-        </li>
-    </ul>
+    <div class="overlay" id="notifications" ng-controller="MessageController">
+        <div class="header" ng-hide="currentMessages.length === 0">
+            Messages
+            <input type="button" ng-click="removeAllMessages()" value="Clear All"/>
+        </div>
+        <ul id="message-list" class="scrollable">
+            <li ng-repeat="message in currentMessages track by $index">
+                <span class="[[ message.type ]]">[[ message.getTypeIcon() ]]</span> [[ message.title ]]
+                <div ng-hide="!angular.isDefined(message.text)">
+                    <span ng-hide="!angular.isDefined(message.displayText)">
+                        <input type="button" ng-click="message.displayText = message.text;" value=">>" />
+                    </span>
+                    <span ng-hide="angular.isDefined(message.displayText)">
+                        [[ message.text ]]
+                        <input type="button" ng-click="message.displayText = undefined;" value="<<" />
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>

@@ -33,7 +33,7 @@
         };
 
         this.predictionFromData = function (data) {
-            var bus = (data.bus != null) ? this.busFromData(data.bus) : null;
+            var bus = this.busFromData(data.bus);
             return new Prediction(data.dueTime, bus);
         };
 
@@ -142,7 +142,7 @@
                     .success(obj.onStopSuccess)
                     .error(function (data, status, headers, config) {
                         obj.stopRequest.reject(
-                            'Failed to retrieve bus stop data');
+                            'status: {0}'.format(status || 500));
                         obj.stopRequest = null;
                     });
             }

@@ -50,9 +50,11 @@
                                 path = ['ie', 'stop.png'];
                                 mapObject.width = 33;
                                 mapObject.height = 40;
+                                mapObject.zIndex = 4;
                             }
                             else {
                                 path = ['bus.png'];
+                                mapObject.zIndex = 5;
                                 mapObject.width = 16;
                                 mapObject.height = 16;
                                 mapObject.anchor = new Point(mapObject.width / 2,

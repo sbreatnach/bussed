@@ -28,7 +28,7 @@
         return GeoArea;
     })
     .factory('MapObject', function () {
-        function MapObject(id, position, name, icon, description, width, height, anchor) {
+        function MapObject(id, position, name, icon, width, height, anchor, zIndex) {
             this.id = id;
             this.position = position;
             this.name = name;
@@ -36,7 +36,7 @@
             this.width = width;
             this.height = height;
             this.anchor = anchor;
-            this.description = description;
+            this.zIndex = zIndex;
         }
 
         return MapObject;

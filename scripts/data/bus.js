@@ -11,17 +11,15 @@
             this.stopInterval = null;
         }
 
-        var errorCallback = function (error) {
-            Messages.addErrorMessage(error);
-        };
-
         RealtimeBusInfo.prototype.updateStops = function (area) {
             var obj = this;
             BusEireann.getStops(area).then(
                 function (data) {
                     obj.scope.stops = data;
                 },
-                errorCallback
+                function (error) {
+                    Messages.addErrorMessage('Unable to retrieve all stop data', error);
+                }
             );
         };
 
@@ -38,7 +36,9 @@
                 function (data) {
                     obj.scope.vehicles = data;
                 },
-                errorCallback
+                function (error) {
+                    Messages.addErrorMessage('Unable to retrieve latest bus data', error);
+                }
             );
         };
 
@@ -67,7 +67,9 @@
                 function (data) {
                     obj.scope.stopPredictions = data;
                 },
-                errorCallback
+                function (error) {
+                    Messages.addErrorMessage('Unable to retrieve latest stop data', error);
+                }
             );
         };
 

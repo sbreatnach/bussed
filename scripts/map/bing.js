@@ -97,7 +97,8 @@
                 draggable: false,
                 width: object.width,
                 height: object.height,
-                icon: object.icon
+                icon: object.icon,
+                zIndex: object.zIndex
             };
             if (object.anchor) {
                 pinOptions.anchor = new Microsoft.Maps.Point(object.anchor.x,
