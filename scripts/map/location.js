@@ -28,7 +28,7 @@
         return GeoArea;
     })
     .factory('MapObject', function () {
-        function MapObject(id, position, name, icon, width, height, anchor, zIndex) {
+        function MapObject(id, position, name, icon, width, height, anchor, zIndex, overlayText) {
             this.id = id;
             this.position = position;
             this.name = name;
@@ -37,6 +37,7 @@
             this.height = height;
             this.anchor = anchor;
             this.zIndex = zIndex;
+            this.overlayText = overlayText;
         }
 
         return MapObject;
@@ -44,7 +45,7 @@
 
     .service('GeoDefaults', ['GeoPosition', function (GeoPosition) {
         this.position = new GeoPosition(53.363540, -7.835782);
-        this.zoomLevel = 0.5;
+        this.zoomLevel = 0.85;
     }])
 
     .service('LocationService', ['$q', 'GeoPosition', function ($q, GeoPosition) {

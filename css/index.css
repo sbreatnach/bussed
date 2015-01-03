@@ -57,3 +57,7 @@
 .scrollable {
     overflow:auto;
 }
+
+.map-pin div {
+    font-size: 8pt !important;
+}

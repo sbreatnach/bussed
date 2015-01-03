@@ -111,7 +111,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="images\bus.png" />
-    <Content Include="images\ie\stop.png" />
+    <Content Include="images\stop.png" />
     <Content Include="plugins\org.apache.cordova.console\.fetch.json" />
     <Content Include="plugins\org.apache.cordova.console\CONTRIBUTING.md" />
     <Content Include="plugins\org.apache.cordova.console\doc\de\index.md" />

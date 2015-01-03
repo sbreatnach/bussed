@@ -98,8 +98,12 @@
                 width: object.width,
                 height: object.height,
                 icon: object.icon,
-                zIndex: object.zIndex
+                zIndex: object.zIndex,
+                typeName: 'map-pin'
             };
+            if (object.overlayText) {
+                pinOptions.text = object.overlayText;
+            }
             if (object.anchor) {
                 pinOptions.anchor = new Microsoft.Maps.Point(object.anchor.x,
                                                              object.anchor.y);

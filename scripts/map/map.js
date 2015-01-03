@@ -44,13 +44,14 @@
                         map.clearObjects(modelKey);
                         angular.forEach(newValues, function (value) {
                             var mapObject = new MapObject(
-                                value.id, value.position, value.name);
+                                value.id, value.position);
                             var path;
                             if (modelKey === 'stops') {
-                                path = ['ie', 'stop.png'];
+                                path = ['stop.png'];
                                 mapObject.width = 33;
                                 mapObject.height = 40;
                                 mapObject.zIndex = 4;
+                                mapObject.overlayText = 'STOP';
                             }
                             else {
                                 path = ['bus.png'];
