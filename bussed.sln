@@ -126,6 +126,7 @@ Global
 		{E328530E-7E58-4DD2-A396-BA093FC0C1F3}.Release|Windows-x86.Build.0 = Release|Windows-x86
 		{E328530E-7E58-4DD2-A396-BA093FC0C1F3}.Release|Windows-x86.Deploy.0 = Release|Windows-x86
 		{D908CE65-1089-4881-B165-609710246C64}.Debug|Android.ActiveCfg = Debug|Any CPU
+		{D908CE65-1089-4881-B165-609710246C64}.Debug|Android.Build.0 = Debug|Any CPU
 		{D908CE65-1089-4881-B165-609710246C64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D908CE65-1089-4881-B165-609710246C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D908CE65-1089-4881-B165-609710246C64}.Debug|iOS.ActiveCfg = Debug|Any CPU
@@ -157,6 +158,7 @@ Global
 		{D908CE65-1089-4881-B165-609710246C64}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D908CE65-1089-4881-B165-609710246C64}.Release|Windows Phone (Universal).ActiveCfg = Release|Any CPU
 		{D908CE65-1089-4881-B165-609710246C64}.Release|Windows Phone 8.ActiveCfg = Release|Any CPU
+		{D908CE65-1089-4881-B165-609710246C64}.Release|Windows Phone 8.Build.0 = Release|Any CPU
 		{D908CE65-1089-4881-B165-609710246C64}.Release|Windows-AnyCPU.ActiveCfg = Release|Any CPU
 		{D908CE65-1089-4881-B165-609710246C64}.Release|Windows-ARM.ActiveCfg = Release|Any CPU
 		{D908CE65-1089-4881-B165-609710246C64}.Release|Windows-x64.ActiveCfg = Release|Any CPU

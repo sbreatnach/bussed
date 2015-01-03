@@ -78,20 +78,39 @@
         $scope.realtimeInfo = new RealtimeBusInfo($scope);
         $scope.map = null;
         $scope.selectedObject = null;
+        $scope.selectedStop = null;
         $scope.stopPredictions = null;
+        $scope.currentArea = null;
 
         var updateWithMap = function (event, map) {
             if (map.getZoomLevel() >= 0.7) {
                 var area = map.getVisibleArea();
-                $scope.realtimeInfo.updateStops(area);
-                $scope.realtimeInfo.updateVehiclesRegularly(area);
+                $scope.currentArea = area;
+                $scope.realtimeInfo.updateStops($scope.currentArea);
+                $scope.realtimeInfo.updateVehiclesRegularly($scope.currentArea);
             }
             else {
                 map.clearObjects();
                 $scope.realtimeInfo.cancelVehicleUpdate();
                 $scope.realtimeInfo.cancelStopUpdate();
                 $scope.selectedObject = null;
+                $scope.selectedStop = null;
                 $scope.stopPredictions = null;
+                $scope.currentArea = null;
+            }
+        };
+
+        var pauseUpdates = function (event) {
+            $scope.realtimeInfo.cancelVehicleUpdate();
+            $scope.realtimeInfo.cancelStopUpdate();
+        };
+
+        var resumeUpdates = function (event) {
+            if ($scope.selectedStop) {
+                $scope.realtimeInfo.updateStopRegularly($scope.selectedStop);
+            }
+            if ($scope.currentArea) {
+                $scope.realtimeInfo.updateVehiclesRegularly($scope.currentArea);
             }
         };
 
@@ -112,15 +131,19 @@
             $scope.selectedObject = $scope[objectKey][object.id];
             $scope.stopPredictions = null;
             if (objectKey === 'stops') {
-                $scope.realtimeInfo.updateStopRegularly($scope.selectedObject);
+                $scope.selectedStop = $scope.selectedObject;
+                $scope.realtimeInfo.updateStopRegularly($scope.selectedStop);
             }
             else {
+                $scope.selectedStop = null;
                 $scope.realtimeInfo.cancelStopUpdate();
             }
         };
 
         $scope.$on('mapinit', updateWithMap);
         $scope.$on('mapchanged', updateWithMap);
+        $scope.$on('onPause', pauseUpdates);
+        $scope.$on('onResume', resumeUpdates);
 
         if ($scope.platformData.ready) {
             $log.debug('Platform already ready');

@@ -48,7 +48,7 @@
             obj.updateVehicles(area);
             obj.vehicleInterval = $interval(function () {
                 obj.updateVehicles.apply(obj, [area]);
-            }, frequency || 60000);
+            }, frequency || 20000);
             obj.scope.$on('$destroy', function () {
                 obj.cancelVehicleUpdate();
             });
@@ -79,7 +79,7 @@
             obj.updateStop(stop);
             obj.stopInterval = $interval(function () {
                 obj.updateStop.apply(obj, [stop]);
-            }, frequency || 30000);
+            }, frequency || 20000);
             obj.scope.$on('$destroy', function () {
                 obj.cancelStopUpdate();
             });
