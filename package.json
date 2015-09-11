@@ -1,26 +1,6 @@
 {
-  "name": "bussed",
-  "version": "0.0.1",
-  "description": "",
-  "keywords": [],
-  "homepage": "https://github.com/sbreatnach/bussed",
-  "bugs": "https://github.com/sbreatnach/bussed/issues",
-  "author": {
-    "name": "Shane Breatnach",
-    "email": "",
-    "url": "https://github.com/sbreatnach"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/sbreatnach/bussed.git"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "bower": "latest",
-    "bower-installer": "latest"
-  },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "private": true
+    "name": "bussed",
+    "version": "1.0.0",
+    "dependencies": {
+    }
 }
