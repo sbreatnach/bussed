@@ -4,7 +4,8 @@
   <description>Bussing around Ireland is less of a pain with Bussed!</description>
   <author href="http://cordova.io" email="dev@cordova.apache.org">Shane Breatnach</author>
   <content src="index.html" />
-  <access origin="*" />
+  <access origin="https://*.virtualearth.net/" />
+  <access origin="http://bussed.apphb.com/" />
   <vs:features />
   <preference name="SplashScreen" value="screen" />
   <preference name="windows-target-version" value="8.1" />
@@ -120,4 +121,5 @@
   <preference name="android-minSdkVersion" value="4" />
   <preference name="android-maxSdkVersion" value="5" />
   <preference name="android-targetSdkVersion" value="5" />
+  <vs:plugin name="cordova-plugin-whitelist" version="1.0.0" />
 </widget>
