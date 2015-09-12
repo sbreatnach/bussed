@@ -34,12 +34,12 @@
                                               'bussed.data.common'])
 
     .constant('BUSEIREANN_URLS', {
-        vehicles: 'http://bussed.apphb.com/v1/buses',
-        stops: 'http://bussed.apphb.com/v1/stops',
-        stop: 'http://bussed.apphb.com/v1/stops/{0}/'
-        //vehicles: 'http://localhost:50027/v1/buses',
-        //stops: 'http://localhost:50027/v1/stops',
-        //stop: 'http://localhost:50027/v1/stops/{0}/'
+        //vehicles: 'http://bussed.apphb.com/v1/buses',
+        //stops: 'http://bussed.apphb.com/v1/stops',
+        //stop: 'http://bussed.apphb.com/v1/stops/{0}/'
+        vehicles: 'http://localhost:50027/v1/buses',
+        stops: 'http://localhost:50027/v1/stops',
+        stop: 'http://localhost:50027/v1/stops/{0}/'
     })
 
     .service('DataGenerator', ['GeoPosition', 'Stop', 'Bus', 'Route', 'Prediction',
