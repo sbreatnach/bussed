@@ -55,7 +55,9 @@
     .service('FileLib', function () {
         this.getLocalFilePath = function () {
             var parts;
-            if (angular.isDefined(cordova.file) &&
+            var isRippleEmulator = window.parent && window.parent.ripple;
+            if (!isRippleEmulator &&
+                angular.isDefined(cordova.file) &&
                 cordova.file.applicationDirectory !== null) {
                 // IOS/Android have the path correctly defined
                 parts = [cordova.file.applicationDirectory + 'www'];
