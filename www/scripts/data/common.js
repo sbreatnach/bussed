@@ -39,6 +39,10 @@
             this.publicId = publicId;
         }
 
+        Stop.prototype.label = function () {
+            return this.name;
+        };
+
         return Stop;
     })
 
@@ -48,7 +52,17 @@
             this.name = name;
             this.position = position;
             this.direction = direction;
+            this.route = null;
         }
+
+        Bus.prototype.label = function () {
+            if (this.route) {
+                return this.route.label() + ' - ' + this.name;
+            }
+            else {
+                return this.name;
+            }
+        };
 
         return Bus;
     })
@@ -60,6 +74,10 @@
             this.endpoints = endpoints;
         }
 
+        Route.prototype.label = function () {
+            return this.name;
+        };
+
         return Route;
     })
 
@@ -68,6 +86,10 @@
             this.dueTime = dueTime;
             this.bus = bus;
         }
+
+        Prediction.prototype.label = function () {
+            return this.bus.label();
+        };
 
         return Prediction;
     });
