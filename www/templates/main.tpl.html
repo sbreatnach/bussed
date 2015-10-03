@@ -1,8 +1,8 @@
 ﻿<div id="map-container" ng-controller="MapController">
     <div id="map" bsd-map="map" api-key="AsmDtzooNdsTJqU8Yeve01jJDwbi8k3NKSjbgdOeOC_cqudSuOldrInCb-CJcDyg"></div>
     <div id="map-data">
-        <input type="button" ng-click="setCurrentPosition()" value="Set Current Position"/>
-        <div class="overlay" ng-hide="selectedObject === null">
+        <input class="button" type="button" ng-click="setCurrentPosition()" value="Set Current Position"/>
+        <div class="overlay selectedobject" ng-hide="selectedObject === null">
             [[ selectedObject.label() ]]
         </div>
         <div id="predictions" class="overlay scrollable" ng-hide="stopPredictions === null">
