@@ -1,0 +1,327 @@
+icons:
+  android:
+    icon-36-ldpi:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 36
+      dest_h: 36
+    icon-48-mdpi:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 48
+      dest_h: 48
+    icon-72-hdpi:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 72
+      dest_h: 72
+    icon-96-xhdpi:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 96
+      dest_h: 96
+  ios:
+    icon-40:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 40
+      dest_h: 40
+    icon-40-2x:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 80
+      dest_h: 80
+    icon-50:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 50
+      dest_h: 50
+    icon-50-2x:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 100
+      dest_h: 100
+    icon-57:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 57
+      dest_h: 57
+    icon-57-2x:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 114
+      dest_h: 114
+    icon-60:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 60
+      dest_h: 60
+    icon-60-2x:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 120
+      dest_h: 120
+    icon-60-3x:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 180
+      dest_h: 180
+    icon-72:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 72
+      dest_h: 72
+    icon-72-2x:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 118
+      dest_h: 118
+    icon-76:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 76
+      dest_h: 76
+    icon-76-2x:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 126
+      dest_h: 126
+    icon-small:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 29
+      dest_h: 29
+    icon-small-2x:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 58
+      dest_h: 58
+  windows:
+    logo:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 150
+      dest_h: 150
+      mode: RGBA
+    smalllogo:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 30
+      dest_h: 30
+      mode: RGBA
+    Square30x30Logo.scale-100:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 30
+      dest_h: 30
+      mode: RGBA
+    Square44x44Logo.scale-240:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 106
+      dest_h: 106
+      mode: RGBA
+    Square70x70Logo.scale-100:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 70
+      dest_h: 70
+      mode: RGBA
+    Square71x71Logo.scale-240:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 170
+      dest_h: 170
+      mode: RGBA
+    Square150x150Logo.scale-100:
+      src_y: 20%
+      src_w: 40%
+      src_h: 60%
+      dest_w: 150
+      dest_h: 150
+      mode: RGBA
+    Square150x150Logo.scale-240:
+      src_y: 20%
+      src_w: 40%
+      src_h: 60%
+      dest_w: 360
+      dest_h: 360
+      mode: RGBA
+    Square310x310Logo.scale-100:
+      src_y: 20%
+      src_w: 40%
+      src_h: 60%
+      dest_w: 310
+      dest_h: 310
+      mode: RGBA
+    storelogo:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 50
+      dest_h: 50
+      mode: RGBA
+    StoreLogo.scale-100:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 50
+      dest_h: 50
+      mode: RGBA
+    StoreLogo.scale-240:
+      src_y: 20%
+      src_w: 30%
+      src_h: 50%
+      dest_w: 120
+      dest_h: 120
+      mode: RGBA
+    Wide310x150Logo.scale-100:
+      src_y: 20%
+      src_w: 90%
+      src_h: 60%
+      dest_w: 310
+      dest_h: 150
+      mode: RGBA
+    Wide310x150Logo.scale-240:
+      src_y: 20%
+      src_w: 90%
+      src_h: 60%
+      dest_w: 744
+      dest_h: 360
+      resize_filter: NEAREST
+      mode: RGBA
+  wp8:
+    ApplicationIcon:
+      src_y: 20%
+      src_w: 40%
+      src_h: 60%
+      dest_w: 99
+      dest_h: 99
+    Background:
+      src_y: 20%
+      src_w: 40%
+      src_h: 60%
+      dest_w: 159
+      dest_h: 159
+screens:
+  android:
+    screen-hdpi-landscape:
+      src_w: 80%
+      dest_w: 640
+      dest_h: 480
+      mode: RGBA
+    screen-hdpi-portrait:
+      src_w: 45%
+      dest_w: 480
+      dest_h: 640
+      mode: RGBA
+    screen-ldpi-landscape:
+      src_w: 80%
+      dest_w: 426
+      dest_h: 320
+      mode: RGBA
+    screen-ldpi-portrait:
+      src_w: 45%
+      dest_w: 320
+      dest_h: 426
+      mode: RGBA
+    screen-mdpi-landscape:
+      src_y: 10%
+      src_w: 80%
+      src_h: 80%
+      dest_w: 470
+      dest_h: 320
+      mode: RGBA
+    screen-mdpi-portrait:
+      src_w: 45%
+      dest_w: 320
+      dest_h: 470
+      mode: RGBA
+    screen-xhdpi-landscape:
+      src_w: 80%
+      dest_w: 960
+      dest_h: 720
+      mode: RGBA
+    screen-xhdpi-portrait:
+      src_w: 45%
+      dest_w: 720
+      dest_h: 960
+      mode: RGBA
+  ios:
+    screen-ipad-landscape:
+      src_w: 80%
+      dest_w: 1024
+      dest_h: 768
+      mode: RGBA
+    screen-ipad-landscape-2x:
+      src_w: 80%
+      dest_w: 2048
+      dest_h: 1536
+      mode: RGBA
+    screen-ipad-portrait:
+      src_w: 45%
+      dest_w: 768
+      dest_h: 1024
+      mode: RGBA
+    screen-ipad-portrait-2x:
+      src_w: 45%
+      dest_w: 1536
+      dest_h: 2048
+      mode: RGBA
+    screen-iphone-568h-2x:
+      src_w: 35%
+      dest_w: 640
+      dest_h: 1136
+      mode: RGBA
+    screen-iphone-landscape-736h:
+      src_y: 10%
+      src_w: 80%
+      src_h: 80%
+      dest_w: 2208
+      dest_h: 1242
+      mode: RGBA
+    screen-iphone-portrait:
+      src_w: 45%
+      dest_w: 320
+      dest_h: 480
+      mode: RGBA
+    screen-iphone-portrait-2x:
+      src_w: 45%
+      dest_w: 640
+      dest_h: 960
+      mode: RGBA
+    screen-iphone-portrait-667h:
+      src_w: 35%
+      dest_w: 750
+      dest_h: 1334
+      mode: RGBA
+    screen-iphone-portrait-736h:
+      src_w: 35%
+      dest_w: 1242
+      dest_h: 2208
+      mode: RGBA
