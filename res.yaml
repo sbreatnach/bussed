@@ -325,3 +325,41 @@ screens:
       dest_w: 1242
       dest_h: 2208
       mode: RGBA
+  windows:
+    splashscreen:
+      src_y: 10%
+      src_w: 80%
+      src_h: 80%
+      dest_w: 620
+      dest_h: 300
+      mode: RGBA
+    SplashScreen.scale-100:
+      src_y: 10%
+      src_w: 80%
+      src_h: 80%
+      dest_w: 620
+      dest_h: 300
+      mode: RGBA
+    SplashScreen.scale-240:
+      src_w: 35%
+      dest_w: 1152
+      dest_h: 1920
+      mode: RGBA
+    SplashScreenPhone.scale-240:
+      src_w: 35%
+      dest_w: 1152
+      dest_h: 1920
+      mode: RGBA
+  wp8:
+    screen-portrait:
+      format: jpg
+      src_w: 35%
+      dest_w: 480
+      dest_h: 800
+      mode: RGB
+    SplashScreenImage:
+      format: jpg
+      src_w: 35%
+      dest_w: 768
+      dest_h: 1280
+      mode: RGB
