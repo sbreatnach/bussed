@@ -84,6 +84,7 @@
     .factory('Prediction', function () {
         function Prediction(dueTime, bus) {
             this.dueTime = dueTime;
+            this.displayDueTime = new Date(dueTime * 1000).toLocaleTimeString();
             this.bus = bus;
         }
 
