@@ -1,10 +1,8 @@
 {
      "android": {
          "release": {
-             "keystore": "",
-             "storePassword": "",
-             "alias": "",
-             "password" : "",
+             "keystore": "../android/app-release-key.keystore",
+             "alias": "glicsoft-release",
              "keystoreType": ""
          }
      }

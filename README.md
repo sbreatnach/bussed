@@ -7,7 +7,7 @@ the actual real-time information.
 
 # Developer Installation
 
-NodeJS and npm is required. Project files are supplied for Visual Studio 2015.
+NodeJS 4.x+ and npm is required. Project files are supplied for Visual Studio 2015.
 The [Android SDK Tools](http://developer.android.com/sdk/installing/index.html?pkg=tools)
 must be installed for Android support.
 
@@ -15,12 +15,18 @@ must be installed for Android support.
 
 Assumes you have installed Chocolatey (you have done this, right?):
 
-   choco install nodejs.install
+    choco install nodejs.install
 
 ## Ubuntu Linux
 
-   sudo apt-get install nodejs npm
-   sudo ln -s /usr/bin/nodejs /usr/bin/node
+    sudo apt-get install nodejs npm
+    sudo ln -s /usr/bin/nodejs /usr/bin/node
+   
+For later versions of Node, use the [debsource](https://github.com/nodesource/distributions)
+instructions:
+
+    curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+    sudo apt-get install -y nodejs
 
 ## Initial Setup
 
@@ -37,3 +43,12 @@ Runs the Ripple emulator:
     ripple emulate
 
 Set the fixed geo-location to a reasonable location e.g. 51.8968920,-8.4863160
+
+# Building Release
+
+## Android
+
+The Android keystore must exist in the android directory relative to the bussed
+directory and the command must be run with Node 4.x+ installed
+
+    cordova build android --release --buildConfig build.json
