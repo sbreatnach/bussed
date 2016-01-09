@@ -10,7 +10,7 @@
   <description>Bussing around Ireland is less of a pain with Bussed!</description>
   <longDescription>
     Bussed is the simple and fast way to travel by bus in Ireland. You can view all stops nearby on a handy map and view the buses that are due soon, all in real-time.
-    Currently, only Bus Éireann buses are visible on the map. Dublin Bus and other modes of transport are on the roadmap.
+    Currently, only Bus Éireann buses are visible. Dublin Bus and other modes of transport are on the roadmap.
   </longDescription>
   <author email="support@glicsoft.com">Shane Breatnach</author>
   <content src="index.html" />
