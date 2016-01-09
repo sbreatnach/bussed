@@ -9,7 +9,7 @@
         windows-packageVersion="1.0.0.0"
         android-versionCode="2">
   <!-- App is released under a few names, depending on availability -->
-  <name>bussed</name>
+  <name>Bussed</name>
   <description>Bussing around Ireland is less of a pain with Bussed!</description>
   <longDescription>
     The simple and fast way to travel by bus in Ireland: you can view all stops nearby on a handy map and view the buses that are due soon, all in real-time.
