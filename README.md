@@ -47,10 +47,10 @@ Set the fixed geo-location to a reasonable location e.g. 51.8968920,-8.4863160
 # Generate Resources
 
 There is a script that generates all icons and graphics from a single base image
-to avoid the tedious cropping/scaling required. Python 3.4+ and a recent 
+to avoid the tedious cropping/scaling needed. Python 3.4+ and a recent
 version of Pillow is required to run it: 
 
-    python img_create.py res/bus_original.png res.yaml
+    python -m scripts.img_create res/bus_original.png res.yaml
 
 # Building Release
 

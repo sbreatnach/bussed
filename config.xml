@@ -5,11 +5,14 @@
         version="1.0.0"
         xmlns="http://www.w3.org/ns/widgets"
         defaultlocale="en-IE"
+        ios-CFBundleVersion="1.0.0"
+        windows-packageVersion="1.0.0.0"
         android-versionCode="2">
+  <!-- App is released under a few names, depending on availability -->
   <name>bussed</name>
   <description>Bussing around Ireland is less of a pain with Bussed!</description>
   <longDescription>
-    Bussed is the simple and fast way to travel by bus in Ireland. You can view all stops nearby on a handy map and view the buses that are due soon, all in real-time.
+    The simple and fast way to travel by bus in Ireland: you can view all stops nearby on a handy map and view the buses that are due soon, all in real-time.
     Currently, only Bus Éireann buses are visible. Dublin Bus and other modes of transport are on the roadmap.
   </longDescription>
   <author email="support@glicsoft.com">Shane Breatnach</author>
@@ -110,11 +113,6 @@
     <splash src="res/screens/wp8/SplashScreenImage.jpg" width="480" height="800" />
   </platform>
   <preference name="Fullscreen" value="False" />
-  <vs:platformSpecificValues>
-    <vs:platformSpecificWidget platformName="windows">
-      <vs:name>Bussed</vs:name>
-    </vs:platformSpecificWidget>
-  </vs:platformSpecificValues>
   <preference name="KeepRunning" value="False" />
   <preference name="ShowTitle" value="True" />
   <preference name="InAppBrowserStorageEnabled" value="False" />
@@ -124,4 +122,13 @@
   <vs:plugin name="cordova-plugin-whitelist" version="1.0.0" />
   <vs:plugin name="cordova-plugin-geolocation" version="1.0.1" />
   <vs:plugin name="cordova-plugin-file" version="3.0.0" />
+  <!-- Custom hooks -->
+  <platform name="wp8">
+    <hook type="before_build" src="scripts/platform_config.js" />
+    <hook type="after_build" src="scripts/platform_config.js" />
+  </platform>
+  <platform name="windows">
+    <hook type="before_build" src="scripts/platform_config.js" />
+    <hook type="after_build" src="scripts/platform_config.js" />
+  </platform>
 </widget>
