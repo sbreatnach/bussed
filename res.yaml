@@ -222,12 +222,29 @@ icons:
       src_h: 70%
       dest_w: 99
       dest_h: 99
-    Background:
+    AppTileIcon:
       src_y: 20%
       src_w: 40%
+      src_h: 70%
+      dest_w: 300
+      dest_h: 300
+    WideIcon-358x173:
+      src_y: 20%
+      src_w: 80%
       src_h: 60%
-      dest_w: 159
-      dest_h: 159
+      dest_w: 358
+      dest_h: 173
+    SquareIcon-358x358:
+      src_y: 20%
+      src_w: 40%
+      src_h: 70%
+      dest_w: 358
+      dest_h: 358
+    Background:
+      src_w: 80%
+      dest_w: 1000
+      dest_h: 800
+      mode: RGBA
 screens:
   android:
     google_play:

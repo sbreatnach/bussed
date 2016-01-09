@@ -120,7 +120,7 @@ if __name__ == '__main__':
                  'images')
     parser.add_argument(
             '-d', '--destination-dir',
-            default=os.path.join(os.path.dirname(__file__), 'res'),
+            default=os.path.join(os.getcwd(), 'res'),
             help='directory and it\'s sub-directories where resulting images '
                  'will be outputted')
 
