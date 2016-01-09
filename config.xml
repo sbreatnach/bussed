@@ -126,9 +126,13 @@
   <platform name="wp8">
     <hook type="before_build" src="scripts/platform_config.js" />
     <hook type="after_build" src="scripts/platform_config.js" />
+    <hook type="before_run" src="scripts/platform_config.js" />
+    <hook type="after_run" src="scripts/platform_config.js" />
   </platform>
   <platform name="windows">
     <hook type="before_build" src="scripts/platform_config.js" />
     <hook type="after_build" src="scripts/platform_config.js" />
+    <hook type="before_run" src="scripts/platform_config.js" />
+    <hook type="after_run" src="scripts/platform_config.js" />
   </platform>
 </widget>

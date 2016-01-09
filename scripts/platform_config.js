@@ -16,7 +16,7 @@ function fileExists(filePath)
 module.exports = function(context) {
     var hookName = context.hook;
 
-    if (hookName == 'before_build') {
+    if (hookName.lastIndexOf('before_') == 0) {
         var platforms = context.opts.platforms;
         var args = '';
         var options = {cwd: context.opts.projectRoot};
@@ -32,7 +32,7 @@ module.exports = function(context) {
         }
     }
 
-    else if (hookName == 'after_build') {
+    else if (hookName.lastIndexOf('after_') == 0) {
         // revert to previous state of configuration
         if (fileExists('default.config.xml')) {
             fs.renameSync('default.config.xml', 'config.xml');
