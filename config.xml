@@ -20,6 +20,9 @@
   <vs:features />
   <preference name="SplashScreen" value="screen" />
   <preference name="windows-target-version" value="8.1" />
+  <platform name="ios">
+    <preference name="Orientation" value="all" />
+  </platform>
   <allow-intent href="http://*/*" />
   <allow-intent href="https://*/*" />
   <allow-intent href="geo:*" />

@@ -5,6 +5,9 @@ viewing.
 This is an Apache Cordova frontend to the bussedly backend server which returns
 the actual real-time information.
 
+A version of this is now live on the [Google Play store](https://play.google.com/store/apps/details?id=com.glicsoft.bussed)
+and the [Windows Phone store](http://windowsphone.com/s?appid=0ce94fe7-3014-4a1c-8e14-fff6da291e83).
+
 # Developer Installation
 
 NodeJS 4.x+ and npm is required. Project files are supplied for Visual Studio 2015.
