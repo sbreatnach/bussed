@@ -83,6 +83,4 @@
         console.log('Base device ready');
         platformData.ready = true;
     }, false);
- 
- console.log('Index.js loaded');
 })();
