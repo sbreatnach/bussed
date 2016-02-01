@@ -143,6 +143,16 @@
             }
         };
 
+        var online = function (event) {
+            // TODO: clear offline notifications, if any
+            resumeUpdates();
+        };
+
+        var offline = function (event) {
+            // TODO: add notification that device is offline
+            pauseUpdates();
+        };
+
         $scope.setCurrentPosition = function () {
             LocationService.getCurrentPosition().then(
                 function (position) {
@@ -173,6 +183,8 @@
         $scope.$on('mapchanged', updateWithMap);
         $scope.$on('onPause', pauseUpdates);
         $scope.$on('onResume', resumeUpdates);
+        $scope.$on('onOnline', online);
+        $scope.$on('onOffline', offline);
 
         if ($scope.platformData.ready) {
             $log.debug('Platform already ready');

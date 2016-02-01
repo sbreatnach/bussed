@@ -31,7 +31,8 @@
     'use strict';
     var platformData = {
         ready: false,
-        paused: false
+        paused: false,
+        online: navigator.connection.type !== Connection.NONE
     };
 
     angular.module('bussed', ['ngRoute', 'bussed.main'])
@@ -73,6 +74,20 @@
             $rootScope.$apply(function () {
                 $rootScope.platformData.paused = false;
                 $rootScope.$broadcast('onResume');
+            });
+        }, false);
+        document.addEventListener('offline', function () {
+            console.log('Device offline');
+            $rootScope.$apply(function () {
+                $rootScope.platformData.online = false;
+                $rootScope.$broadcast('onOffline');
+            });
+        }, false);
+        document.addEventListener('online', function () {
+            console.log('Device online');
+            $rootScope.$apply(function () {
+                $rootScope.platformData.online = true;
+                $rootScope.$broadcast('onOnline');
             });
         }, false);
     });

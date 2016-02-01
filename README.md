@@ -24,7 +24,7 @@ Assumes you have installed Chocolatey (you have done this, right?):
 
     sudo apt-get install nodejs npm
     sudo ln -s /usr/bin/nodejs /usr/bin/node
-   
+
 For later versions of Node, use the [debsource](https://github.com/nodesource/distributions)
 instructions:
 
@@ -35,12 +35,13 @@ instructions:
 
     npm install -g cordova
     npm install -g ripple-emulator
+    cordova prepare
     cordova platform add wp8
     cordova platform add android
 
 # Emulating
 
-Runs the Ripple emulator: 
+Runs the Ripple emulator:
 
     cordova prepare android
     ripple emulate
@@ -51,7 +52,7 @@ Set the fixed geo-location to a reasonable location e.g. 51.8968920,-8.4863160
 
 There is a script that generates all icons and graphics from a single base image
 to avoid the tedious cropping/scaling needed. Python 3.4+ and a recent
-version of Pillow is required to run it: 
+version of Pillow is required to run it:
 
     python -m scripts.img_create res/bus_original.png res.yaml
 
