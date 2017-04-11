@@ -168,19 +168,21 @@
             var mapOptions = {
                 credentials: apiKey,
                 enableClickableLogo: false,
-                enableSearchLogo: false,
-                showDashboard: false,
+                showDashboard: false
+            };
+            var viewOptions = {
                 zoom: this.zoomLevel
             };
             if (this.listenerId) {
                 Microsoft.Maps.Events.removeHandler(this.listenerId);
             }
             this.map = new Microsoft.Maps.Map(element[0], mapOptions);
+            this.map.setView(viewOptions);
             var obj = this;
             this.listenerId = Microsoft.Maps.Events.addThrottledHandler(
                 this.map,
                 'viewchangeend', function (e) {
-                    obj.zoomLevel = obj.map.getTargetZoom();
+                    obj.zoomLevel = obj.map.getZoom();
                     obj.scope.$emit('mapchanged', obj);
                 },
                 2000

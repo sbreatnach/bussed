@@ -8,16 +8,16 @@
     },
     "installed_plugins": {
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "io.cordova.myapp89640b"
+            "PACKAGE_NAME": "com.glicsoft.bussed"
         },
         "cordova-plugin-file": {
-            "PACKAGE_NAME": "io.cordova.myapp89640b"
+            "PACKAGE_NAME": "com.glicsoft.bussed"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "io.cordova.myapp89640b"
+            "PACKAGE_NAME": "com.glicsoft.bussed"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "io.cordova.myapp89640b"
+            "PACKAGE_NAME": "com.glicsoft.bussed"
         }
     },
     "dependent_plugins": {}
