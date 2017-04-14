@@ -176,7 +176,7 @@
             if (this.listenerId) {
                 Microsoft.Maps.Events.removeHandler(this.listenerId);
             }
-            this.map = new Microsoft.Maps.Map(element[0], mapOptions);
+            this.map = new Microsoft.Maps.Map(element, mapOptions);
             this.map.setView(viewOptions);
             var obj = this;
             this.listenerId = Microsoft.Maps.Events.addThrottledHandler(

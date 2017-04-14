@@ -58,7 +58,15 @@
                         $log.debug('window.devicePixelRatio: {0}'.format(
                             window.devicePixelRatio || 'unsupported'));
                         elem.height(window.innerHeight);
-                        newMap.initialize(elem, mapApiKey);
+                        // HACK: to workaround Bing maps not loading fully
+                        // despite using correct callbacks
+                        var interval = setInterval(function(){
+                            try {
+                                newMap.initialize(elem[0], mapApiKey);
+                                clearInterval(interval);
+                            } catch(e) {
+                            }
+                        }, 100);
                     }
                 });
 
