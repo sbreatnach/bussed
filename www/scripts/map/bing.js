@@ -43,7 +43,7 @@
             this.map = null;
             this.listenerId = null;
             this.mapObjects = {};
-            this.mapEntities = {};
+            this.mapLayers = {};
         }
 
         var createLocationFromPosition = function (position) {
@@ -83,13 +83,13 @@
         BingMap.prototype.clearObjects = function (collectionKey) {
             var obj = this;
             var objectKeys = null;
-            var entityKeys = null;
+            var layerKeys = null;
             if (collectionKey) {
-                entityKeys = [collectionKey];
+                layerKeys = [collectionKey];
                 objectKeys = [collectionKey];
             }
             else {
-                entityKeys = Object.keys(obj.mapEntities);
+                layerKeys = Object.keys(obj.mapLayers);
                 objectKeys = Object.keys(obj.mapObjects);
             }
             angular.forEach(objectKeys, function (key) {
@@ -98,14 +98,14 @@
                 }
                 delete obj.mapObjects[key];
             });
-            angular.forEach(entityKeys, function (key) {
-                if (obj.mapEntities[key] === undefined) {
+            angular.forEach(layerKeys, function (key) {
+                if (obj.mapLayers[key] === undefined) {
                     return;
                 }
                 if (obj.map) {
-                    obj.map.entities.remove(obj.mapEntities[key]);
+                    obj.map.layers.remove(obj.mapLayers[key]);
                 }
-                delete obj.mapEntities[key];
+                delete obj.mapLayers[key];
             });
         };
 
@@ -115,20 +115,15 @@
             }
             this.mapObjects[collectionKey][object.id] = object;
 
-            if (this.mapEntities[collectionKey] === undefined) {
-                this.mapEntities[collectionKey] =
-                    new Microsoft.Maps.EntityCollection();
+            if (this.mapLayers[collectionKey] === undefined) {
+                this.mapLayers[collectionKey] = new Microsoft.Maps.Layer();
                 if (this.map) {
-                    this.map.entities.push(this.mapEntities[collectionKey]);
+                    this.map.layers.insert(this.mapLayers[collectionKey]);
                 }
             }
             var pinOptions = {
                 draggable: false,
-                width: object.width,
-                height: object.height,
-                icon: object.icon,
-                zIndex: object.zIndex,
-                typeName: 'map-pin'
+                icon: object.icon
             };
             if (object.overlayText) {
                 pinOptions.text = object.overlayText;
@@ -143,7 +138,7 @@
             Microsoft.Maps.Events.addHandler(pin, 'click', function (event) {
                 obj.onPinClick.apply(obj, [pin, collectionKey, object]);
             });
-            this.mapEntities[collectionKey].push(pin);
+            this.mapLayers[collectionKey].add(pin);
         };
 
         BingMap.prototype.onPinClick = function (pin, collectionKey, object) {
