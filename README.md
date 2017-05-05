@@ -39,7 +39,9 @@ instructions:
     cordova platform add wp8
     cordova platform add android
 
-# Emulating
+# Testing
+
+## Emulating
 
 Runs the Ripple emulator:
 
@@ -47,6 +49,18 @@ Runs the Ripple emulator:
     ripple emulate
 
 Set the fixed geo-location to a reasonable location e.g. 51.8968920,-8.4863160
+
+## On Device
+
+Start the app via cordova CLI (you may be asked to confirm the RSA key):
+
+    cordova run android
+
+Once started, open the following URL in any Chrome-based browser:
+
+    chrome://inspect/#devices
+
+and click the Inspect link for the application.
 
 # Generate Resources
 
