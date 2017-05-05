@@ -74,7 +74,8 @@ version of Pillow is required to run it:
 
 ## Android
 
-The Android keystore must exist in the android directory relative to the bussed
-directory and the command must be run with Node 4.x+ installed
+The Android keystore (backed up on Dropbox) must exist in the android directory
+relative to the bussed directory and the command must be run with Node 4.x+
+installed.
 
     cordova build android --release --buildConfig build.json
