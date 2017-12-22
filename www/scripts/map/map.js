@@ -169,7 +169,7 @@
                     }
                 },
                 function (errorMessage) {
-                    Messages.addMessage(errorMessage);
+                    Messages.addErrorMessage(errorMessage);
                 }
             );
         };

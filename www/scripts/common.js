@@ -56,7 +56,10 @@
         this.getLocalFilePath = function () {
             var parts;
             var isRippleEmulator = window.parent && window.parent.ripple;
-            if (!isRippleEmulator &&
+            if (cordova.platformId == 'browser') {
+		parts = [cordova.file.applicationDirectory];
+	    }
+            else if (!isRippleEmulator &&
                 angular.isDefined(cordova.file) &&
                 cordova.file.applicationDirectory !== null) {
                 // IOS/Android have the path correctly defined

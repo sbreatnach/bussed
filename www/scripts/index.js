@@ -29,13 +29,8 @@
  */
 (function () {
     'use strict';
-    var platformData = {
-        ready: false,
-        paused: false,
-        online: navigator.connection.type !== Connection.NONE
-    };
-
-    angular.module('bussed', ['ngRoute', 'bussed.main'])
+    var rootApp = 'bussed';
+    angular.module(rootApp, ['ngRoute', 'bussed.main'])
 
     .config(function ($compileProvider, $logProvider, $routeProvider, $interpolateProvider) {
         // add support for WP8 URLs in Cordova. See https://github.com/angular/angular.js/issues/2303
@@ -54,14 +49,11 @@
         // changes initiated by backend, converting those changes into
         // Angular events
         $log.debug('Running platform hooks');
-        $rootScope.platformData = platformData;
-        document.addEventListener('deviceready', function () {
-            console.log('Device ready');
-            $rootScope.$apply(function () {
-                $rootScope.platformData.ready = true;
-                $rootScope.$broadcast('onReady');
-            });
-        }, false);
+        $rootScope.platformData = {
+            ready: true,
+            paused: false,
+            online: navigator.connection.type !== Connection.NONE
+        };
         document.addEventListener('pause', function () {
             console.log('Device paused');
             $rootScope.$apply(function () {
@@ -92,10 +84,17 @@
         }, false);
     });
 
-    // listening on device ready twice to catch edge case if deviceready is
-    // invoked before angular bootstrapped
-    document.addEventListener('deviceready', function () {
-        console.log('Base device ready');
-        platformData.ready = true;
-    }, false);
+    // taken from https://stackoverflow.com/questions/21556090/cordova-angularjs-device-ready
+    angular.element(document).ready(function () {
+        if (window.cordova) {
+            console.log("Running in Cordova, will bootstrap AngularJS once 'deviceready' event fires.");
+            document.addEventListener('deviceready', function () {
+                console.log("Deviceready event has fired, bootstrapping AngularJS.");
+                angular.bootstrap(document.body, [rootApp]);
+            }, false);
+        } else {
+            console.log("Running in browser, bootstrapping AngularJS now.");
+            angular.bootstrap(document.body, [rootApp]);
+        }
+    });
 })();
