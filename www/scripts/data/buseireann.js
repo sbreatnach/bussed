@@ -29,7 +29,7 @@
  */
 (function () {
     'use strict';
-    var serverRoot = '//bussure-timely-chimpanzee.eu-gb.mybluemix.net';
+    var serverRoot = '//bussure.glicsoft.com';
 
     angular.module('bussed.data.buseireann', ['bussed.common',
                                               'bussed.map.location',
