@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="4" defaultlocale="en-IE" id="com.glicsoft.bussed" ios-CFBundleVersion="1.0.1" version="1.0.1" windows-packageVersion="1.0.0.0" xmlns="http://www.w3.org/ns/widgets">
+<widget android-versionCode="5" defaultlocale="en-IE" id="com.glicsoft.bussed" ios-CFBundleVersion="1.0.2" version="1.0.2" windows-packageVersion="1.0.1.0" xmlns="http://www.w3.org/ns/widgets">
     <name>Bussed</name>
     <description>Bussing around Ireland is less of a pain with Bussed!</description>
     <longDescription>
@@ -115,7 +115,7 @@
     </platform>
     <engine name="android" spec="~6.2.1" />
     <engine name="ios" spec="^4.5.4" />
-    <engine name="browser" spec="^5.0.1" />
+    <engine name="browser" spec="^5.0.3" />
     <plugin name="cordova-plugin-network-information" spec="~1.2.0" />
     <plugin name="cordova-plugin-whitelist" spec="1.3.2" />
     <plugin name="cordova-plugin-file" spec="4.3.3" />

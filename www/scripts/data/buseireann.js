@@ -29,17 +29,15 @@
  */
 (function () {
     'use strict';
+    var serverRoot = '//bussure-timely-chimpanzee.eu-gb.mybluemix.net';
+
     angular.module('bussed.data.buseireann', ['bussed.common',
                                               'bussed.map.location',
                                               'bussed.data.common'])
-
     .constant('BUSEIREANN_URLS', {
-        vehicles: 'http://bussure.glicsoft.com/v1/buses',
-        stops: 'http://bussure.glicsoft.com/v1/stops',
-        stop: 'http://bussure.glicsoft.com/v1/stops/{0}/'
-        //vehicles: 'http://localhost:50027/v1/buses',
-        //stops: 'http://localhost:50027/v1/stops',
-        //stop: 'http://localhost:50027/v1/stops/{0}/'
+        vehicles: serverRoot + '/v1/buses',
+        stops: serverRoot + '/v1/stops',
+        stop: serverRoot + '/v1/stops/{0}/'
     })
 
     .service('DataGenerator', ['GeoPosition', 'Stop', 'Bus', 'Route', 'Prediction',
